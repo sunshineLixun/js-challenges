@@ -1,0 +1,27 @@
+{
+  "name": "js-challenges",
+  "version": "1.0.0",
+  "description": "回答 https://github.com/Sunny-117/js-challenges 问题",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunshineLixun/js-challenges.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunshineLixun/js-challenges/issues"
+  },
+  "homepage": "https://github.com/sunshineLixun/js-challenges#readme",
+  "devDependencies": {
+    "@vitest/browser": "^0.33.0",
+    "@vitest/ui": "^0.33.0",
+    "vitest": "^0.33.0",
+    "webdriverio": "^8.11.2"
+  }
+}

@@ -32,7 +32,7 @@
 </div>
  */
 
-function render(vnode) {
+export function render(vnode) {
   if (typeof vnode === "string") {
     return document.createTextNode(vnode);
   }
@@ -64,35 +64,3 @@ function render(vnode) {
 
   return dom;
 }
-
-function test() {
-  const vnode = {
-    tag: "DIV",
-    attrs: {
-      id: "app",
-    },
-    children: [
-      {
-        tag: "SPAN",
-        children: [
-          {
-            tag: "A",
-            children: [{ tag: "P", attrs: { text: "p" }, children: 123213 }],
-          },
-        ],
-      },
-      {
-        tag: "SPAN",
-        children: [
-          { tag: "A", children: [] },
-          { tag: "A", children: [] },
-        ],
-      },
-    ],
-  };
-
-  const dom = render(vnode);
-  console.log(dom);
-}
-
-test();
