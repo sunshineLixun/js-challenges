@@ -21,6 +21,7 @@
   "devDependencies": {
     "@vitest/browser": "^0.33.0",
     "@vitest/ui": "^0.33.0",
+    "promises-aplus-tests": "^2.1.2",
     "vitest": "^0.33.0",
     "webdriverio": "^8.11.2"
   }
