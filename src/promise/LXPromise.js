@@ -278,8 +278,8 @@ function resolvePromise(promise, result, resolve, reject) {
   }
 }
 
-// cjs
+// cjs  如果是promises-aplus-tests测试，node环境需要cjs
 // module.exports = LXPromise;
 
-// esm
+// esm 浏览器环境测试
 export { LXPromise };
