@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { LXPromise } from "../LXPromise.js";
+      new LXPromise((resolve, reject) => {
+        resolve(111);
+      })
+        .then((res) => {
+          return LXPromise.resolve(1111);
+        })
+        .then((val) => {
+          console.log("val", val);
+        })
+        .finally(() => {
+          console.log("finally");
+        })
+        .then(() => {
+          console.log("finally then");
+        });
+    </script>
+  </body>
+</html>

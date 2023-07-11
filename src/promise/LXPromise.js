@@ -64,12 +64,12 @@ class LXPromise {
          * 这可以通过“宏任务”机制（例如 setTimeout 或 setImmediate ）或“微任务”机制（例如 MutationObserver 或 process.nextTick 。
          * 由于 Promise 实现被视为平台代码，因此它本身可能包含一个任务调度队列或“蹦床”，在其中调用处理程序
          *
-         * 这里可以用setTimeout宏任务来处理异步
+         * 这里可以用setTimeout宏任务来处理异步,
+         * 重点： 每一次的then方法都将回调加入setTimeout队列执行，FI行FO，最先进入的队列的就会先执。所以链式调用的执行顺序也是遵循这个规则
          */
         setTimeout(() => {
           try {
             const res = onFulfilled(this.value);
-            console.log("reslove", res);
             resolvePromise(promise2, res, resolve, reject);
           } catch (error) {
             // 将新的promise状态修改为 rejected
@@ -81,7 +81,6 @@ class LXPromise {
         setTimeout(() => {
           try {
             const res = onRejected(this.reason);
-            console.log(res);
             resolvePromise(promise2, res, resolve, reject);
           } catch (error) {
             reject(error);
@@ -92,7 +91,6 @@ class LXPromise {
           setTimeout(() => {
             try {
               const res = onFulfilled(this.value);
-              console.log(res);
               resolvePromise(promise2, res, resolve, reject);
             } catch (error) {
               // 将新的promise状态修改为 rejected
@@ -105,7 +103,6 @@ class LXPromise {
           setTimeout(() => {
             try {
               const res = onRejected(this.reason);
-              console.log(res);
               resolvePromise(promise2, res, resolve, reject);
             } catch (error) {
               reject(error);
@@ -137,7 +134,7 @@ class LXPromise {
   }
 
   static resolve(value) {
-    // LXPromise.resolve(LXPromise.resolve())
+    // LXPromise.resolve(() => LXPromise.resolve())
     if (value instanceof LXPromise) {
       return value;
     }
@@ -251,7 +248,7 @@ function resolvePromise(promise, result, resolve, reject) {
   ) {
     try {
       const then = result.then;
-      // 不是promise实例，但是实现了then: result.then()
+      // 不是promise实例，但是实现了then: function() {}
       if (typeof then === "function") {
         then.call(
           result,
@@ -281,4 +278,8 @@ function resolvePromise(promise, result, resolve, reject) {
   }
 }
 
-module.exports = LXPromise;
+// cjs
+// module.exports = LXPromise;
+
+// esm
+export { LXPromise };

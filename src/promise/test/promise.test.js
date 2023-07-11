@@ -11,7 +11,7 @@ describe("Promises/A+ Tests", function () {
       resolve(111);
     })
       .then((res) => {
-        return LXPromise.resolve(res);
+        expect(res).toBe(111);
       })
       .then((val) => console.log("val", val));
   });
