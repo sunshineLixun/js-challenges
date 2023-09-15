@@ -1,5 +1,6 @@
 import { describe, test, expect } from "vitest";
-const LXPromise = require("../LXPromise");
+// const LXPromise = require("../LXPromise");
+import { LXPromise } from "../LXPromise";
 
 describe("Promises/A+ Tests", function () {
   test("resolve", () => {

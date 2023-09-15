@@ -29,8 +29,6 @@ const vnode = {
 describe("vnode", () => {
   test("json2dom", () => {
     const dom = render(vnode);
-    console.log(dom);
-
     expect(dom).not.toBeNull();
   });
 });
