@@ -49,4 +49,16 @@ describe("debounce", () => {
 
     expect(fn).toHaveBeenCalledTimes(2);
   });
+
+  test("mock args", () => {
+    const fn = vi.fn((a, v) => {});
+
+    let debouncedFunc = debounce(fn, 1000, true);
+
+    debouncedFunc();
+
+    vi.runAllTimers();
+
+    expect(fn).toHaveLength(2);
+  });
 });
