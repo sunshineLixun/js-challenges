@@ -10,12 +10,10 @@ function promiseTest(successCb, errorCb) {
 describe("promise.all", () => {
   test("promise.all.success", () => {
     function successCb(data) {
-      console.log("success:", data);
       expect(data[0]).toBe(123);
     }
 
     function errorCb(data) {
-      console.log("error:", data);
       expect(data).toBe("12312321");
     }
 
