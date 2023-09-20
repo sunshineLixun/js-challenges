@@ -7,6 +7,18 @@ describe("shallow copy", () => {
     age: 111,
   };
 
+  test("测试copy值类型", () => {
+    const target = 1;
+
+    let result = shallowCopy1(target);
+
+    result = 2;
+
+    expect(result).toBe(2);
+
+    expect(target).toBe(1);
+  });
+
   test("测试copy1之后的结果", () => {
     const target1 = shallowCopy1(target);
 
