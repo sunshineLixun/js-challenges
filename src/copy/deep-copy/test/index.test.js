@@ -3,7 +3,6 @@ import { deepCopy } from "../index";
 
 describe("deepCopy", () => {
   function arrFunc() {}
-
   const arr = [
     1,
     2,
@@ -20,7 +19,12 @@ describe("deepCopy", () => {
   const symbol = Symbol("2");
   const symbol2 = Symbol("symbol222");
 
-  const set = new Set(["aa", "bb"]);
+  const set = new Set(["xxx"]);
+
+  const map = new Map([
+    [11, "11"],
+    [222, "222"],
+  ]);
 
   const origin = {
     name: "js",
@@ -34,6 +38,7 @@ describe("deepCopy", () => {
     [symbol]: "1",
     s2: symbol2,
     set: set,
+    map: map,
   };
 
   test("测试值类型", () => {
@@ -113,6 +118,26 @@ describe("deepCopy", () => {
 
     result.set = new Set(["bvc"]);
 
-    // console.log(origin, result);
+    expect(result.set).toStrictEqual(new Set(["bvc"]));
+
+    expect(origin.set).toStrictEqual(new Set(["xxx"]));
+  });
+
+  test("测试Map属性copy", () => {
+    const result = deepCopy(origin);
+    const _map = new Map([
+      [333, "333"],
+      [444, "444"],
+    ]);
+    result.map = _map;
+
+    expect(origin.map).toStrictEqual(map);
+    expect(result.map).toStrictEqual(_map);
+  });
+
+  test("测试循环引用", () => {
+    origin.ref = origin;
+    const result = deepCopy(origin);
+    console.log(result.ref.ref.ref.ref.ref);
   });
 });
