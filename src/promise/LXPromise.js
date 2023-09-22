@@ -152,6 +152,11 @@ class LXPromise {
   static all(promises) {
     return new LXPromise((resolve, reject) => {
       let result = [];
+
+      if (!promises || !promises.length) {
+        return resolve(result);
+      }
+
       let count = 0;
 
       promises.forEach((promise, index) => {
