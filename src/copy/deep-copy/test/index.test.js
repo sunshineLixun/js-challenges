@@ -138,6 +138,10 @@ describe("deepCopy", () => {
   test("测试循环引用", () => {
     origin.ref = origin;
     const result = deepCopy(origin);
-    console.log(result.ref.ref.ref.ref.ref);
+
+    result.ref = {};
+
+    expect(origin.ref).toStrictEqual(origin);
+    expect(result.ref).toStrictEqual({});
   });
 });

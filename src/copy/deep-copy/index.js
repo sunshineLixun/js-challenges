@@ -5,7 +5,6 @@ import {
   isSymobl,
   isSet,
   isMap,
-  isWeakMap,
 } from "../../utils/general";
 
 export function deepCopy(origin, map = new WeakMap()) {
